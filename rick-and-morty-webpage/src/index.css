@@ -67,3 +67,15 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.active {
+  background-color: rgb(60, 207, 60);
+  margin: 0;
+  padding: 0;
+}
+
+.about-image{
+  border-radius: 50%;
+  width: 300px;
+  align-items: center;
+}
