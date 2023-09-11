@@ -1,16 +1,43 @@
 import "./App.css";
-import Card from "./components/Card.jsx";
-import Cards from "./components/Cards.jsx";
-import Nav from "./components/Nav.jsx";
-import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import Card from "./components/card/Card.jsx";
+import Cards from "./components/cards/Cards.jsx";
+import Nav from "./components/nav/Nav.jsx";
+import { useEffect, useState } from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import About from "./components/About";
 import Detail from "./components/Detail";
 import NotFound from "./components/NotFound";
+import Form from "./components/Form";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import Favorites from "./components/favorites/Favorites";
 
 
 function App() {
   const [characters, setCharacters] = useState([]);
+
+  const pwd = useLocation()
+
+  const [access, setAccess] = useState(false)
+  const EMAIL = "kevin0696s@gmail.com"
+  const PASSWORD = "Picardo_Repez"
+  const navigate = useNavigate()
+  const login = (userData) => {
+    if(userData.email === EMAIL && userData.password === PASSWORD) {
+      setAccess(true)
+      navigate("/home")
+    }
+
+  }
+
+  const logout = ()=>{
+    setAccess(false)
+    navigate("/")
+  }
+
+  useEffect(() => {
+    !access && navigate("/")
+  }, [access])
 
   const onSearch = (id) => {
     fetch(`https://rickandmortyapi.com/api/character/${id}`)
@@ -26,22 +53,28 @@ function App() {
   };
 
   const onClose = (id) => {
-   console.log(id)
+   
    setCharacters(characters.filter((element) => element.id!=id))
   }
 
   return (
     <div className="App">
-      <Nav onSearch={onSearch} />
+      {pwd.pathname !== "/" ? <Nav onSearch={onSearch} logout={logout} />:null}
+      
+      <Provider store={store}>
       <Routes>
-        <Route path="/home" element={ <Cards characters={characters} onClose={onClose}/>}/>
+        <Route path="/" element={ <Form login={login}/>}/>
+        <Route path="/favorites" element={ <Favorites/>}/>
+        <Route path="/home" element={ <Cards characters={characters} onClose={onClose} />}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/detail/:id" element={<Detail/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </Provider>
      
     </div>
-  );
+  ); 
 }
 
 export default App;
+8+9+57

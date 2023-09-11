@@ -1,8 +1,9 @@
-import Card from "./Card";
+import Card from "../card/Card";
+import "./Cards.css"
 
 function Cards({ characters,onClose }) {
   return (
-    <div>
+    <div className="cards">
       {characters.map((character) => (
         <Card
           key={character.id}

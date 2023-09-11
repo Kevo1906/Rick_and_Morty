@@ -1,0 +1,25 @@
+.searchbar{
+    background-color: red;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: width 5s ease-in-out;
+    font-size: 1.6rem;
+}
+
+.searchbar-input{
+    height: 30px;
+    border-radius: 20px;
+    border: 2px solid;
+    width: 30px; 
+    /* transition: width 5s ease-in-out; */
+
+}
+
+.searchbar-input:focus{
+    width: 300px;
+    transition: 2s;
+}
+
