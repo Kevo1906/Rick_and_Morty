@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./SearchBar.css"
+import style from "./SearchBar.module.css"
 
 function SearchBar(props) {
   let value;
@@ -9,10 +9,10 @@ function SearchBar(props) {
   }
   let randomId = Math.floor(Math.random()*825+1) 
   return (
-    <div className="searchbar">
-      <button className="searchbar-random" onClick={() => props.onSearch(randomId)}>Random</button>
-      <input className="searchbar-input" type="search" value={value} onChange={handleChange}/>
-      <button className="searchbar-Add" onClick={() => props.onSearch(id)}>Search</button>
+    <div className={style.searchbar}>
+      <button className={style.button} onClick={() => props.onSearch(randomId)}>Random</button>
+      <input className={style.input} type="search" value={value} onChange={handleChange}/>
+      <button className={style.button} onClick={() => props.onSearch(id)}>Search</button>
     </div>
   );
 }
