@@ -6,7 +6,7 @@ function Detail(props){
     const[character, setCharacter] = useState({})
 
     useEffect(()=>{
-        fetch(`https://rickandmortyapi.com/api/character/${id}`)
+        fetch(`http://localhost:3110/rickandmorty/character/${id}`)
         .then((res) => res.json())
         .then((data) => data.name ? setCharacter(data): window.alert("No hay personajes con ese ID"))
     },[id])

@@ -40,9 +40,10 @@ function App() {
   }, [access])
 
   const onSearch = (id) => {
-    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+    fetch(`http://localhost:3110/rickandmorty/character/${id}`)
       .then((res) => res.json())
       .then((data) => {
+        
         let charactersFilter = characters.filter((element) => element.id ==data.id)
         if (data.name && !charactersFilter.length) {
           setCharacters([...characters, data]);
