@@ -9,11 +9,11 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_FAV:
             return {
-                ...state, allCharecters: [...state.allCharecters, action.payload]
+                ...state, myFavorites: action.payload, allCharecters: action.payload
             }
         case REMOVE_FAV:
             return {
-                ...state, myFavorites: state.myFavorites.filter((element) => element.id !== parseInt(action.payload))
+                ...state, myFavorites: action.payload
             }
         case FILTER:
             if(action.payload === "All"){ 

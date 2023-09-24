@@ -11,6 +11,8 @@ import Form from "./components/Form";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import Favorites from "./components/favorites/Favorites";
+import axios from "axios"
+
 
 
 function App() {
@@ -22,11 +24,19 @@ function App() {
   const EMAIL = "kevin0696s@gmail.com"
   const PASSWORD = "Picardo_Repez"
   const navigate = useNavigate()
+  
   const login = (userData) => {
-    if(userData.email === EMAIL && userData.password === PASSWORD) {
-      setAccess(true)
-      navigate("/home")
-    }
+    const { email, password } = userData
+    const URL = "http://localhost:3001/rickandmorty/login/"
+    axios(URL + `?email=${email}&password=${password}`).then(
+      response => {
+        
+        const{access} = response.data
+        
+        setAccess(access)
+        access && navigate("/home")
+      }
+    )
 
   }
 
@@ -40,7 +50,7 @@ function App() {
   }, [access])
 
   const onSearch = (id) => {
-    fetch(`http://localhost:3110/rickandmorty/character/${id}`)
+    fetch(`http://localhost:3001/rickandmorty/character/${id}`)
       .then((res) => res.json())
       .then((data) => {
         
