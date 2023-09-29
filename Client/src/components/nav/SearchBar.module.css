@@ -26,14 +26,57 @@
     width: 300px;
     transition: 2s;
 }
+
 .button{
     padding: 10px 20px;
-    background-color: #b7cc18;
-    color: #545454;
     font-size: 2rem;
     border: none;
-    border-radius: 20px;
+    border-radius: 40px;
+    color: var(--color-text);
+    background-color: var(--color-primary);
+    -webkit-animation: jello-horizontal 0.9s both;
+    animation: jello-horizontal 0.9s both;
     cursor: pointer;
-    transition: 0.5s;
 }
 
+.button:hover {
+    animation: squeeze3124 0.9s both;
+    background-color: var(--color-contrast);
+  }
+  
+  @keyframes squeeze3124 {
+    0% {
+     -webkit-transform: scale3d(1, 1, 1);
+     transform: scale3d(1, 1, 1);
+    }
+   
+    30% {
+     -webkit-transform: scale3d(1.25, 0.75, 1);
+     transform: scale3d(1.25, 0.75, 1);
+    }
+   
+    40% {
+     -webkit-transform: scale3d(0.75, 1.25, 1);
+     transform: scale3d(0.75, 1.25, 1);
+    }
+   
+    50% {
+     -webkit-transform: scale3d(1.15, 0.85, 1);
+     transform: scale3d(1.15, 0.85, 1);
+    }
+   
+    65% {
+     -webkit-transform: scale3d(0.95, 1.05, 1);
+     transform: scale3d(0.95, 1.05, 1);
+    }
+   
+    75% {
+     -webkit-transform: scale3d(1.05, 0.95, 1);
+     transform: scale3d(1.05, 0.95, 1);
+    }
+   
+    100% {
+     -webkit-transform: scale3d(1, 1, 1);
+     transform: scale3d(1, 1, 1);
+    }
+   }

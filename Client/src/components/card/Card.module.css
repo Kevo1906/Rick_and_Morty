@@ -1,99 +1,160 @@
+.card{
+  overflow: visible; /* cambiar */  
+  width: 250px;
+  height: 300px;
+  margin-right: 50px;
+  
+}
 
-/* Estilo para el contenedor principal de la carta */
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    background-color: #8cbfaf;
-    border: 2px solid #000000;
-    border-radius: 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    width: 300px;
-    height: 400px;
-    overflow: hidden;
-    transition: transform 0.5s ease-in-out;
-  }
+.content {
+  width: 100%;
+  height: 100%;
   
-  /* Estilo para el botón de favoritos (esquina izquierda superior) */
-  .favoriteButton {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #ede7d5;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 2rem;
-    padding: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .favoriteButton:hover {
-    background-color: #b7cc18;
-  }
-  
-  /* Estilo para el botón de cierre (esquina derecha superior) */
-  .closeButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #545454;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 2rem;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .closeButton:hover {
-    background-color: #222;
-  }
-  
-  /* Estilo para la carta cuando el ratón está encima (transformación en cuadrado) */
-  .card:hover {
-    transform: scale(1.1);
-    border-radius: 40px;
-  }
-  
-  /* Estilo para la imagen dentro de la carta */
-  .img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    margin: 0;
-  }
-  
-  /* Estilo para el nombre y el género (aparecen al colocar el ratón encima) */
-  .status,
-  .name {
-    display: none;
-    text-align: center;
-    transition: 1s;
-  }
-  
-  /* Estilo para mostrar el nombre y el género al colocar el ratón encima */
-  .card:hover .name {
-    display: block;
-    margin: 20px;
-    font-size: 3rem;
-    color: #545454;
-    text-decoration: none;
+  transform-style: preserve-3d;
+  transition: transform 800ms ease-in-out;
+  border-radius: 20%;
+  border: 3px solid #323232;
+  box-shadow: 4px 4px #323232;
+}
 
+.front, .back {
+  background-color: #151515;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.back {
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.back_img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+
+}
+
+.card:hover .content {
+  transform: rotateY(180deg);
+}
+
+.front {
+  transform: rotateY(180deg);
+  color: white;
+}
+
+.front .front_content{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.front_img{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  z-index: 2;
+}
+
+.closeButton { 
+  background-color: #00000055;
+  padding: 2px 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(2px);
+  width: fit-content;
+  color: white;
+  z-index: 1;
+}
+
+.description {
+  box-shadow: 0px 0px 10px 5px #00000088;
+  width: 100%;
+  height: 35%;
+  padding: 10px;
+  background-color: #00000099;
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+}
+
+.title {
+  font-size: 11px;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.name{
+  width: 50%;
+}
+
+.card_footer {
+  color: #ffffff88;
+  margin-top: 5px;
+  font-size: 8px;
+}
+
+.front .img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.circle {
+  width: 90px;
+  height: 90px;
+  /* border-radius: 50%;
+  background-color: #ffbb66; */
+  position: relative;
+  /* filter: blur(15px); */
+  animation: floating 2600ms infinite linear;
+}
+
+.bottom {
+  
+  left: 50px;
+  top: 0px;
+  width: 150px;
+  height: 150px;
+  animation-delay: -800ms;
+}
+
+.right {
+  background-color: #ff2233;
+  left: 160px;
+  top: -80px;
+  width: 30px;
+  height: 30px;
+  animation-delay: -1800ms;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
   }
-  .card:hover .status {
-    position: absolute;
-    bottom: 10px;
-    display: block;
-    margin-top: 5px;
-    font-size: 2rem;
-    color: #545454;
-    background-color: #b7cc18;
-    padding: 20px;
-    border-radius: 50%;
+
+  50% {
+    transform: translateY(10px);
   }
+
+  100% {
+    transform: translateY(0px);
+  }
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import style from "./Form.module.css"
 
 export default function Form(props) {
   const [userData, setUserData] = useState({
@@ -55,30 +56,33 @@ export default function Form(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Email:</label>
+    <div className={style.conteiner}>
+    <form onSubmit={handleSubmit} className={style.form}>
+      {/* <label>Email:</label> */}
       <input
-        type="text"
+        type="email"
         name="email"
         id="email"
         placeholder="Insert your email..."
         value={userData.email}
         onChange={handleChange}
+        className={style.input}
       />
-      <p>{userData.email}</p>
       <p>{errors.email}</p>
-      <label>Password:</label>
+      {/* <label>Password:</label> */}
       <input
-        type="text"
+        type="password"
         name="password"
         id="password"
         placeholder="Insert your password..."
         value={userData.password}
         onChange={handleChange}
+        className={style.input}
       />
       <p>{errors.password ? errors.password : null}</p>
-      <button type="submit">SUBMIT</button>
+      <button type="submit" className={style.button_submit}>SUBMIT</button>
     </form>
+    </div>
   );
 }
 

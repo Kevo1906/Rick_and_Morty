@@ -3,17 +3,13 @@ const users = require("../utils/users.js")
 const login = (req, res ) =>{
     const{email,password} = req.query
     
-    const valid_user = users.filter(element => element.email === email && element.password === password)
-    
-    if(valid_user[0].email){
-        return res.status(200).json({
-            access: true
-        })
-    } else {
-        return res.status(200).json({
-            access: false
-        })
-    }
+    let access = false;
+    users.forEach(user => {
+        if(
+            user.email === email && user.password === password
+        ) access = true;
+    })
+    return res.status(200).json({ access });
 }
 
 module.exports = {login};

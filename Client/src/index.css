@@ -1,3 +1,11 @@
+:root{
+  --color-primary: #f9d423;
+  --color-secondary: #add6bc;
+  --color-text: #545454;
+  --color-contrast: #e1f5c4;
+  --color-bg: #79b7b4; 
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,4 +15,11 @@
 }
 html {
   font-size: 62.5%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: url(https://images4.alphacoders.com/936/936813.png) no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
 }
