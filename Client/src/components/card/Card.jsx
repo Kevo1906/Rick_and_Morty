@@ -3,7 +3,7 @@ import style from "./Card.module.css";
 import { addFav, removeFav } from "../../redux/actions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
-import cabeza from "../../img/cabeza.png";
+import cabeza from "../../img/pngegg.png";
 
 function Card(props) {
   const [isFav, setIsFav] = useState(false);
@@ -28,65 +28,60 @@ function Card(props) {
 
   return (
     <div className={style.card}>
-      <Link to={`/detail/${props.id}`}>
-        <div className={style.content}>
-          <div className={style.back}>
-            <img
-              className={style.back_img}
-              src={props.image}
-              alt={props.name}
-            />
-          </div>
-          <div className={style.front}>
-            <div class={style.img}>
-              <img class={style.circle} src={cabeza} alt="" />
-              <img
-                class={`${style.circle} ${style.right}`}
-                src={cabeza}
-                alt=""
-              />
-              <img
-                class={`${style.circle} ${style.bottom}`}
-                src={cabeza}
-                alt=""
-              />
-            </div>
-            {/* <img className={style.front_img} src={props.image} alt={props.name} /> */}
-            <div className={style.front_content}>
-              <button
-                className={style.closeButton}
-                onClick={() => props.onClose(props.id)}
-              >
-                Remove
-              </button>
-              <div className={style.description}>
-                <div className={style.title}>
+      <div className={style.content}>
+        <div className={style.back}>
+          <img className={style.back_img} src={props.image} alt={props.name} />
+        </div>
+        <div className={style.front}>
+          <img className={style.front_img} src={props.image} alt={props.name} />
+          <div className={style.front_content}>
+            <button
+              className={style.closeButton}
+              onClick={() => props.onClose(props.id)}
+            >
+              Remove
+            </button>
+
+            <div className={style.description}>
+              <div className={style.title}>
+                <Link to={`/detail/${props.id}`}>
                   <h2 className={style.name}>{props.name}</h2>
+                </Link>
+                <button
+                  onClick={handleFavorite}
+                  className={style.favoriteButton}
+                >
                   {isFav ? (
-                    <button
-                      onClick={handleFavorite}
-                      className={style.favoriteButton}
+                    <svg
+                      className={style.filled}
+                      height="32"
+                      width="32"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      💚
-                    </button>
+                      <path d="M0 0H24V24H0z" fill="none"></path>
+                      <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z"></path>
+                    </svg>
                   ) : (
-                    <button
-                      onClick={handleFavorite}
-                      className={style.favoriteButton}
+                    <svg
+                      className={style.empty}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
                     >
-                      🤍
-                    </button>
+                      <path fill="none" d="M0 0H24V24H0z"></path>
+                      <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2zm-3.566 15.604c.881-.556 1.676-1.109 2.42-1.701C18.335 14.533 20 11.943 20 9c0-2.36-1.537-4-3.5-4-1.076 0-2.24.57-3.086 1.414L12 7.828l-1.414-1.414C9.74 5.57 8.576 5 7.5 5 5.56 5 4 6.656 4 9c0 2.944 1.666 5.533 4.645 7.903.745.592 1.54 1.145 2.421 1.7.299.189.595.37.934.572.339-.202.635-.383.934-.571z"></path>
+                    </svg>
                   )}
-                </div>
-                <div className={style.card_footer}>
-                  <h3 className={style.status}>{props.status}</h3>
-                  <h3 className={style.gender}>{props.gender}</h3>
-                </div>
+                </button>
+              </div>
+              <div className={style.card_footer}>
+                <h3 className={style.status}>{props.status}</h3>
+                <h3 className={style.gender}>{props.gender}</h3>
               </div>
             </div>
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 }

@@ -1,11 +1,14 @@
 import { useState } from "react";
 import style from "./Form.module.css"
+import cabeza from "../../img/cabeza.png"
 
 export default function Form(props) {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
+
+  let [sended, setSended] = useState("SHOW ME WHAT YOU GOT!!")
 
   const handleChange = (event) => {
     
@@ -50,17 +53,20 @@ export default function Form(props) {
     }}
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    props.login(userData);
+    let access = await props.login(userData);
+    access ? null: setSended("DISQUALIFIED!!!")
   };
 
   return (
     <div className={style.conteiner}>
+    <p className={style.message}>{sended}</p>
+    <img src={cabeza} alt="cabeza" className={style.cabeza}/>
     <form onSubmit={handleSubmit} className={style.form}>
       {/* <label>Email:</label> */}
       <input
-        type="email"
+        type="text"
         name="email"
         id="email"
         placeholder="Insert your email..."
@@ -68,8 +74,8 @@ export default function Form(props) {
         onChange={handleChange}
         className={style.input}
       />
-      <p>{errors.email}</p>
-      {/* <label>Password:</label> */}
+      {sended === "DISQUALIFIED!!!" && errors.email?  <p className={style.errors}>{errors.email}</p>:null}
+      
       <input
         type="password"
         name="password"
@@ -79,7 +85,8 @@ export default function Form(props) {
         onChange={handleChange}
         className={style.input}
       />
-      <p>{errors.password ? errors.password : null}</p>
+      {sended === "DISQUALIFIED!!!" && errors.password?  <p className={style.errors}>{errors.password}</p>:null}
+      
       <button type="submit" className={style.button_submit}>SUBMIT</button>
     </form>
     </div>
