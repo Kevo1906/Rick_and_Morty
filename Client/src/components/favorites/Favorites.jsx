@@ -2,7 +2,7 @@ import { connect, useDispatch } from "react-redux"
 import Card from "../card/Card"
 import { filterCards, orderCards, removeFav } from "../../redux/actions"
 import { useEffect, useState } from "react"
-import "./Favorites.css"    
+import style from "./Favorites.module.css"    
 
 function Favorites ({myFavorites, removeFav})  {
     const dispatch = useDispatch()
@@ -21,18 +21,22 @@ function Favorites ({myFavorites, removeFav})  {
         dispatch(filterCards(event.target.value))
     }
     return (
-        <div className="favorites">
-            <select onChange={handleOrder}>
+        <div className={style.container}>
+          <div className={style.filterContainer}>
+            <select className={style.selectCharacter} onChange={handleOrder}>
                 <option value="A">Ascendente</option>
                 <option value="D">Descendente</option>
             </select>
-            <select onChange={handleFilter}>
+            <select onChange={handleFilter} className={style.selectCharacter}>
+              <option value="All">All</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
-                <option value="All">All</option>
+                
                 <option value="Genderless">Genderless</option>
                 <option value="unknown">unknown</option>
             </select>
+            </div>
+            <div className={style.cards}>
       {myFavorites.map((character) => (
         <Card
           key={character.id}
@@ -46,6 +50,7 @@ function Favorites ({myFavorites, removeFav})  {
           onClose={removeFav}
         />
       ))}
+      </div>
     </div>
     )
 }

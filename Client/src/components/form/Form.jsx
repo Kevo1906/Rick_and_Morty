@@ -2,6 +2,7 @@ import { useState } from "react";
 import style from "./Form.module.css"
 import cabeza from "../../img/cabeza.png"
 
+
 export default function Form(props) {
   const [userData, setUserData] = useState({
     email: "",
@@ -60,10 +61,12 @@ export default function Form(props) {
   };
 
   return (
+    
     <div className={style.conteiner}>
     <p className={style.message}>{sended}</p>
-    <img src={cabeza} alt="cabeza" className={style.cabeza}/>
-    <form onSubmit={handleSubmit} className={style.form}>
+    <img src={cabeza} alt="cabeza" className={style.cabeza} style={sended === "DISQUALIFIED!!!"  ? {filter: 'hue-rotate(60deg) contrast(100%)'}:null} />
+    <form onSubmit={handleSubmit} className={style.form}
+    >
       {/* <label>Email:</label> */}
       <input
         type="text"
@@ -90,6 +93,7 @@ export default function Form(props) {
       <button type="submit" className={style.button_submit}>SUBMIT</button>
     </form>
     </div>
+    
   );
 }
 
